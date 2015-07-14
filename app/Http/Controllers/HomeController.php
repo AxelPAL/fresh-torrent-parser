@@ -25,8 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $torrents = Torrent::where('seeders', '>', 29)->where('isSent', '=', false)->get();
-        var_dump($torrents);exit;
+
     }
 
     /**

@@ -14,7 +14,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\Inspire::class,
-        \App\Console\Commands\Torrent::class,
+        \App\Console\Commands\TorrentCommand::class,
+        \App\Console\Commands\TorrentMailCommand::class,
     ];
 
     /**
@@ -25,7 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
-                 ->hourly();
+        $schedule->command('torrent:parse')->hourly();
+        $schedule->command('torrent:mail')->everyThirtyMinutes();
     }
 }

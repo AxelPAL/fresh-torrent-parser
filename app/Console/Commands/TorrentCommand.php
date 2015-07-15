@@ -65,9 +65,9 @@ class TorrentCommand extends Command
             $filter = $node->filter("td");
             if(count($filter) && count($filter->eq(3))){
                 $name = trim($filter->eq(3)->text());
-                $downloadLink = trim($filter->eq(5)->filter('a')->attr('href'));
-                $downloadLink = str_replace("./",'http://rustorka.com/forum/',$downloadLink);
-                $id = substr($downloadLink,strpos($downloadLink,"=") + 1);
+                $torrentLink = trim($filter->eq(3)->filter('a')->attr('href'));
+                $torrentLink = str_replace("./",'http://rustorka.com/forum/',$torrentLink);
+                $id = substr($torrentLink,strpos($torrentLink,"=") + 1);
                 $seeders = trim($filter->eq(7)->text());
                 $leechers = trim($filter->eq(8)->text());
                 $downloadTimes = trim($filter->eq(9)->text());
@@ -76,7 +76,7 @@ class TorrentCommand extends Command
                     $torrent = new Torrent();
                 }
                 $torrent->name = $name;
-                $torrent->downloadLink = $downloadLink;
+                $torrent->torrentLink = $torrentLink;
                 $torrent->id = (int)$id;
                 $torrent->seeders = (int)$seeders;
                 $torrent->leechers = (int)$leechers;

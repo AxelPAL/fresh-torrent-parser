@@ -15,7 +15,7 @@
             <tbody>
             @foreach($torrents as $torrent)
                 <tr>
-                    <td><a href="{{$torrent->downloadLink}}">{{$torrent->name}}</a></td>
+                    <td><a href="{{$torrent->torrentLink}}">{{$torrent->name}}</a></td>
                     <td>{{$torrent->seeders}}</td>
                     <td>{{$torrent->leechers}}</td>
                     <td>{{$torrent->downloadTimes}}</td>

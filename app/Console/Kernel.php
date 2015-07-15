@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('torrent:parse')->hourly();
-        $schedule->command('torrent:mail')->everyThirtyMinutes();
+        $schedule->command('torrent:parse')->daily();
+        $schedule->command('torrent:mail')->twiceDaily();
     }
 }

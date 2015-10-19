@@ -71,7 +71,7 @@ class TorrentCommand extends Command
                 $seeders = trim($filter->eq(7)->text());
                 $leechers = trim($filter->eq(8)->text());
                 $downloadTimes = trim($filter->eq(9)->text());
-                $torrent = Torrent::where('id', '=', $id)->first();
+                $torrent = Torrent::where('name', '=', $name)->first();
                 if(!$torrent){
                     $torrent = new Torrent();
                 }

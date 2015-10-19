@@ -41,16 +41,14 @@ class TorrentMailCommand extends Command
 	 */
 	public function handle()
 	{
-        $torrents = Torrent::where('seeders', '>', 29)->where('isSent', '=', false)->get();
+		$torrentsModels = Torrent::where('seeders', '>', 29)->where('isSent', '=', false);
+		$torrents = $torrentsModels->get();
         if(count($torrents)){
             Mail::send('emails.freshTorrents', ['torrents' => $torrents], function (Message $m) {
                 $m->from(env("MAIL_FROM_ADDRESS"),'AxelPAL');
                 $m->to(env("EMAIL_TO_SEND"), "AxelPAL")->subject('Новые торренты за ' . date("Y-m-d"));
             });
-            foreach ($torrents as $torrent) {
-                $torrent->isSent = true;
-                $torrent->save();
-            }
+			$torrentsModels->update(['isSent' => true]);
         }
 	}
 }
